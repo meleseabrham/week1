@@ -27,6 +27,8 @@ htmlcov/
 .mypy_cache/
 *.log
 data/raw/*
+!data/raw/.gitkeep
 data/processed/*
+!data/processed/.gitkeep
 .vscode/settings.local.json
 
