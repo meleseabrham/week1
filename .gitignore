@@ -31,5 +31,6 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 !data/processed/eda/
+!data/processed/prices/
 .vscode/settings.local.json
 
