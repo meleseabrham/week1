@@ -19,11 +19,16 @@ The goal is to explore how financial news sentiment influences equity price move
 1. Create a Python 3.11+ virtual environment.
 2. Install dependencies: `pip install -r requirements.txt`.
 3. Place the Financial News and Stock Price Integration Dataset (FNSPID) under `data/raw/`.
-4. Open the notebooks in Jupyter or VS Code to reproduce the analysis.
+4. Run exploratory stats: `python scripts/run_eda.py`.
+5. Run TA/LIB + PyNance indicators: `python scripts/run_technical_analysis.py`.
+
+Outputs are written to `data/processed/eda/`, `data/processed/technical_metrics/`, and chart images under `reports/figures/`.
 
 ## Status
-- [ ] Data ingestion
-- [ ] Sentiment modeling
-- [ ] EDA & reporting
+- [x] Data ingestion
+- [x] Sentiment/EDA automation
+- [x] Technical indicator pipeline
+- [ ] Predictive modeling
+- [ ] Reporting polish
 
 Pull requests welcome!
