@@ -1,0 +1,92 @@
+[
+  {
+    "topic": 1,
+    "keywords": [
+      "target",
+      "price",
+      "buy",
+      "price target",
+      "downgrades",
+      "maintains",
+      "initiates",
+      "upgrades",
+      "neutral",
+      "00"
+    ]
+  },
+  {
+    "topic": 2,
+    "keywords": [
+      "stocks",
+      "week",
+      "earnings",
+      "52",
+      "52 week",
+      "trading",
+      "scheduled",
+      "companies",
+      "earnings scheduled",
+      "shares"
+    ]
+  },
+  {
+    "topic": 3,
+    "keywords": [
+      "share",
+      "shares",
+      "announces",
+      "says",
+      "reports",
+      "update",
+      "stock",
+      "deal",
+      "new",
+      "offering"
+    ]
+  },
+  {
+    "topic": 4,
+    "keywords": [
+      "market",
+      "stocks",
+      "mid",
+      "session",
+      "moving",
+      "day",
+      "stocks moving",
+      "shares",
+      "benzinga",
+      "update"
+    ]
+  },
+  {
+    "topic": 5,
+    "keywords": [
+      "etfs",
+      "movers",
+      "biggest",
+      "biggest movers",
+      "says",
+      "stock",
+      "yesterday",
+      "ceo",
+      "movers yesterday",
+      "data"
+    ]
+  },
+  {
+    "topic": 6,
+    "keywords": [
+      "vs",
+      "est",
+      "eps",
+      "reports",
+      "sales",
+      "pt",
+      "estimate",
+      "q4",
+      "q1",
+      "q3"
+    ]
+  }
+]
