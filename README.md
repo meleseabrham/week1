@@ -14,6 +14,8 @@ The goal is to explore how financial news sentiment influences equity price move
   - `run_eda.py`: Complete EDA pipeline for financial news dataset
   - `run_technical_analysis.py`: Technical indicator computation and visualization
 - `notebooks/`: exploratory data analysis and storytelling notebooks.
+  - `01_eda_analysis.ipynb`: Comprehensive EDA with statistical analysis and visualizations
+  - `02_technical_analysis.ipynb`: Technical analysis using TA-Lib and PyNance with visualizations
 - `data/`: 
   - `raw/`: Original dataset files
   - `processed/eda/`: EDA outputs (statistics, counts, topic models)
@@ -26,26 +28,51 @@ The goal is to explore how financial news sentiment influences equity price move
 
 ## Implementation Details
 
-### Task 1: Exploratory Data Analysis (Completed)
-The EDA pipeline (`scripts/run_eda.py`) processes 1.4M+ financial news headlines through:
+### Task 1: Exploratory Data Analysis (Completed ✅)
 
-1. **Data Cleaning & Feature Engineering**:
-   - UTC-aware date parsing with mixed format handling
-   - Headline length metrics (character and word counts)
+The EDA pipeline (`scripts/run_eda.py`) performs comprehensive analysis on 1.4M+ financial news headlines:
+
+#### 1. **Descriptive Statistics & Distribution Analysis**:
+   - Basic statistics (mean, median, std, min, max) for headline lengths
+   - **Statistical Distribution Testing**: Normality tests using D'Agostino-Pearson test
+   - **Skewness & Kurtosis**: Measures of distribution shape
+   - **Q-Q Plots**: Visual normality assessment
+   - **Evidence**: Headline lengths follow a right-skewed distribution (not normal), indicating most headlines are concise with occasional long-form content
+
+#### 2. **Publisher Analysis**:
+   - Article counts per publisher (1,036 unique publishers)
    - Publisher domain extraction from email formats
-   - Temporal features (hour, day of week, date)
+   - **Concentration Metrics**: Gini coefficient calculation
+   - **Power Law Distribution**: Publisher activity follows a power law (few publishers dominate)
+   - **Evidence**: Top 10 publishers account for ~65% of articles, Gini coefficient > 0.7 indicates high concentration
 
-2. **Analytical Modules**:
-   - Descriptive statistics for headline characteristics
-   - Publisher distribution analysis (1,036 unique publishers)
-   - Time series analysis (daily, hourly, weekday patterns)
-   - Topic modeling using LDA (6 topics identified)
+#### 3. **Time Series Analysis**:
+   - Daily publication volume trends over time
+   - Hourly distribution (UTC) to identify peak publication times
+   - Weekday patterns analysis
+   - **Statistical Testing**: Chi-square test for weekday uniformity
+   - **Evidence**: Significant weekday pattern (p < 0.05) - mid-week peak, low weekend activity
 
-3. **Key Findings**:
-   - Mean headline length: 73 characters (12.4 words)
-   - Top publishers account for 65% of articles
-   - Strong weekday patterns (mid-week peak, low weekend activity)
-   - Six thematic clusters identified (ratings, earnings, announcements, market movers, ETFs, financial metrics)
+#### 4. **Topic Modeling (NLP)**:
+   - Latent Dirichlet Allocation (LDA) with 6 topics
+   - Keyword extraction and topic identification
+   - **Evidence**: Six distinct thematic clusters identified:
+     1. Analyst Ratings & Price Targets
+     2. Earnings & Trading
+     3. Corporate Announcements
+     4. Market Movers
+     5. ETF & Stock Movers
+     6. Financial Metrics
+
+#### 5. **Visualizations & Statistical Evidence**:
+   - Distribution histograms with mean/median overlays
+   - Q-Q plots for normality assessment
+   - Time series plots showing publication trends
+   - Weekday/hourly bar charts with statistical test results
+   - Publisher concentration visualizations
+   - All plots saved to `reports/figures/eda/`
+
+**Output Files**: All statistical analyses, CSV data, and JSON metadata saved to `data/processed/eda/`
 
 ### Task 2: Technical Analysis (Completed)
 The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes indicators for 6 technology stocks:
@@ -98,6 +125,17 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
 
 ### Running the Analysis
 
+**Option 1: Using Jupyter Notebooks (Recommended)**
+1. Start Jupyter Lab:
+   ```bash
+   jupyter lab
+   ```
+2. **For EDA Analysis**: Open `notebooks/01_eda_analysis.ipynb`
+   - Run all cells to perform complete EDA with statistical analysis and visualizations
+3. **For Technical Analysis**: Open `notebooks/02_technical_analysis.ipynb`
+   - Run all cells to compute TA-Lib and PyNance indicators with visualizations
+
+**Option 2: Using Python Scripts**
 1. **Run EDA Pipeline**:
    ```bash
    python scripts/run_eda.py
@@ -113,13 +151,21 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
 ## Output Files
 
 ### EDA Outputs (`data/processed/eda/`)
-- `headline_length_stats.csv`: Descriptive statistics
+- `headline_length_stats.csv`: Descriptive statistics (mean, median, std, etc.)
+- `statistical_analysis.json`: Distribution analysis (skewness, kurtosis, normality tests)
 - `publisher_article_counts.csv`: Article counts by publisher
 - `publisher_domain_counts.csv`: Article counts by domain
+- `publisher_concentration_stats.json`: Gini coefficient and concentration metrics
 - `daily_publication_counts.csv`: Daily time series
 - `hourly_publication_counts.csv`: Hourly distribution (UTC)
 - `weekday_publication_counts.csv`: Day-of-week distribution
+- `time_series_statistics.json`: Chi-square test results and temporal patterns
 - `topic_keywords.json`: LDA topic keywords
+
+### EDA Visualizations (`reports/figures/eda/`)
+- `headline_length_distributions.png`: Histograms and Q-Q plots for length distributions
+- `publisher_analysis.png`: Top publishers bar chart and distribution plot
+- `time_series_analysis.png`: Daily trends, weekday patterns, and hourly distributions
 
 ### Technical Analysis Outputs
 - `data/processed/technical_metrics/{TICKER}_technicals.csv`: Full time series with indicators
@@ -141,13 +187,39 @@ This repository represents original work completed for the Nova Financial Insigh
 - **Visualization**: Automated chart generation for technical indicators
 - **Documentation**: Comprehensive reporting and code documentation
 
-## Status
-- [x] Data ingestion
-- [x] EDA automation (Task 1)
-- [x] Technical indicator pipeline (Task 2)
-- [ ] Sentiment scoring integration
-- [ ] Predictive modeling
-- [ ] Final reporting
+## Assignment Requirements Checklist
+
+### Task 1: Git and GitHub ✅
+- [x] GitHub repository created and properly structured
+- [x] Branch `task-1` created for EDA work
+- [x] Multiple commits with descriptive messages
+- [x] CI/CD workflow configured (`.github/workflows/unittests.yml`)
+- [x] Proper folder structure matching requirements
+
+### Task 1: EDA & Statistical Analysis ✅
+- [x] **Descriptive Statistics**: Headline length metrics (characters, words)
+- [x] **Publisher Analysis**: Article counts per publisher, domain extraction
+- [x] **Time Series Analysis**: Daily, hourly, weekday publication patterns
+- [x] **Text Analysis/Topic Modeling**: LDA topic modeling with keyword extraction
+- [x] **Statistical Distributions**: Normality tests, skewness, kurtosis analysis
+- [x] **Statistical Plots**: Histograms, Q-Q plots, time series, distribution plots
+- [x] **Evidence-Based Insights**: Chi-square tests, Gini coefficient, distribution analysis
+
+### Task 2: Technical Analysis ✅
+- [x] Branch `task-2` created
+- [x] Pull Request merged to main branch
+- [x] **TA-Lib Indicators**: SMA, EMA, RSI, MACD, ATR computed
+- [x] **PyNance Metrics**: Growth, volatility, moving averages
+- [x] **Data Visualization**: Multi-panel candlestick charts with indicators
+- [x] Analysis completed for 6 stocks (AAPL, AMZN, GOOG, META, MSFT, NVDA)
+
+## Project Status
+- [x] Data ingestion and preprocessing
+- [x] EDA automation with statistical analysis (Task 1) ✅
+- [x] Technical indicator pipeline (Task 2) ✅
+- [ ] Sentiment scoring integration (Future work)
+- [ ] Predictive modeling (Future work)
+- [ ] Final reporting (In progress)
 
 ## License
 
