@@ -96,6 +96,43 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    - RSI and MACD subplots
    - Last 180 trading days displayed
 
+### Task 3: Sentiment Analysis and Correlation (Completed ✅)
+The sentiment correlation notebook (`notebooks/03_sentiment_correlation.ipynb`) analyzes the relationship between news sentiment and stock movements:
+
+1. **Sentiment Analysis**:
+   - TextBlob-based sentiment scoring on all news headlines
+   - Polarity scores ranging from -1 (negative) to +1 (positive)
+   - Subjectivity scores to measure opinion vs. fact
+   - Sentiment classification (positive, negative, neutral)
+
+2. **Date Alignment**:
+   - Normalized timestamps between news and stock datasets
+   - Aligned news publication dates with stock trading days
+   - Handled timezone differences and missing data
+
+3. **Stock Returns Calculation**:
+   - Computed daily percentage returns from closing prices
+   - Formula: `(Close_today - Close_yesterday) / Close_yesterday * 100`
+
+4. **Daily Aggregation**:
+   - Averaged sentiment scores when multiple articles appear on the same day
+   - Computed standard deviation of sentiment for days with multiple articles
+   - Tracked article counts per day
+
+5. **Correlation Analysis**:
+   - Pearson correlation coefficient between daily sentiment and stock returns
+   - Statistical significance testing (p-values)
+   - Analysis performed for each stock individually (AAPL, AMZN, GOOG, META, MSFT, NVDA)
+
+6. **Visualizations**:
+   - Sentiment distribution histograms
+   - Correlation bar charts by stock
+   - Scatter plots showing sentiment vs. returns
+   - Time series overlays of sentiment and returns
+   - Statistical significance visualizations
+
+**Output Files**: All sentiment scores, correlation results, and visualizations saved to `data/processed/sentiment_correlation/` and `reports/figures/`
+
 ## Getting Started
 
 ### Prerequisites
@@ -181,6 +218,18 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
 - `data/processed/technical_metrics/{TICKER}_technicals.csv`: Full time series with indicators
 - `data/processed/technical_metrics/technical_summary.csv`: Latest snapshot
 - `reports/figures/{TICKER}_technicals.png`: Visualization charts
+
+### Sentiment Correlation Outputs (`data/processed/sentiment_correlation/`)
+- `daily_sentiment_by_stock.csv`: Aggregated daily sentiment scores by stock
+- `{TICKER}_sentiment_returns.csv`: Merged sentiment and returns data for each stock
+- `correlation_results.csv`: Pearson correlation coefficients and p-values
+- `analysis_summary.json`: Summary statistics and metadata
+
+### Sentiment Correlation Visualizations (`reports/figures/`)
+- `sentiment_distribution.png`: Distribution of sentiment scores
+- `sentiment_correlation_analysis.png`: Correlation analysis charts
+- `sentiment_vs_returns_by_stock.png`: Scatter plots for individual stocks
+- `sentiment_returns_timeseries.png`: Time series of sentiment vs returns
 
 ## Documentation
 
