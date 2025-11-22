@@ -15,12 +15,14 @@ The goal is to explore how financial news sentiment influences equity price move
   - `run_technical_analysis.py`: Technical indicator computation and visualization
 - `notebooks/`: exploratory data analysis and storytelling notebooks.
   - `01_eda_analysis.ipynb`: Comprehensive EDA with statistical analysis and visualizations
-  - `02_technical_analysis.ipynb`: Technical analysis using TA-Lib and PyNance with visualizations
+  - `02_quantitative_analysis.ipynb`: Technical analysis using TA-Lib and PyNance with visualizations
+  - `03_sentiment_correlation.ipynb`: Sentiment analysis and correlation with stock movements
 - `data/`: 
   - `raw/`: Original dataset files
   - `processed/eda/`: EDA outputs (statistics, counts, topic models)
   - `processed/prices/`: Stock price data (AAPL, AMZN, GOOG, META, MSFT, NVDA)
   - `processed/technical_metrics/`: Technical indicator time series
+  - `processed/sentiment_correlation/`: Sentiment scores and correlation analysis results
 - `reports/`: 
   - `figures/`: Visualization charts for technical analysis
   - `interim_report.md`: Detailed progress report
@@ -94,6 +96,43 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    - RSI and MACD subplots
    - Last 180 trading days displayed
 
+### Task 3: Sentiment Analysis and Correlation (Completed ✅)
+The sentiment correlation notebook (`notebooks/03_sentiment_correlation.ipynb`) analyzes the relationship between news sentiment and stock movements:
+
+1. **Sentiment Analysis**:
+   - TextBlob-based sentiment scoring on all news headlines
+   - Polarity scores ranging from -1 (negative) to +1 (positive)
+   - Subjectivity scores to measure opinion vs. fact
+   - Sentiment classification (positive, negative, neutral)
+
+2. **Date Alignment**:
+   - Normalized timestamps between news and stock datasets
+   - Aligned news publication dates with stock trading days
+   - Handled timezone differences and missing data
+
+3. **Stock Returns Calculation**:
+   - Computed daily percentage returns from closing prices
+   - Formula: `(Close_today - Close_yesterday) / Close_yesterday * 100`
+
+4. **Daily Aggregation**:
+   - Averaged sentiment scores when multiple articles appear on the same day
+   - Computed standard deviation of sentiment for days with multiple articles
+   - Tracked article counts per day
+
+5. **Correlation Analysis**:
+   - Pearson correlation coefficient between daily sentiment and stock returns
+   - Statistical significance testing (p-values)
+   - Analysis performed for each stock individually (AAPL, AMZN, GOOG, META, MSFT, NVDA)
+
+6. **Visualizations**:
+   - Sentiment distribution histograms
+   - Correlation bar charts by stock
+   - Scatter plots showing sentiment vs. returns
+   - Time series overlays of sentiment and returns
+   - Statistical significance visualizations
+
+**Output Files**: All sentiment scores, correlation results, and visualizations saved to `data/processed/sentiment_correlation/` and `reports/figures/`
+
 ## Getting Started
 
 ### Prerequisites
@@ -132,8 +171,10 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    ```
 2. **For EDA Analysis**: Open `notebooks/01_eda_analysis.ipynb`
    - Run all cells to perform complete EDA with statistical analysis and visualizations
-3. **For Technical Analysis**: Open `notebooks/02_technical_analysis.ipynb`
+3. **For Technical Analysis**: Open `notebooks/02_quantitative_analysis.ipynb`
    - Run all cells to compute TA-Lib and PyNance indicators with visualizations
+4. **For Sentiment Correlation**: Open `notebooks/03_sentiment_correlation.ipynb`
+   - Run all cells to perform sentiment analysis and correlation with stock returns
 
 **Option 2: Using Python Scripts**
 1. **Run EDA Pipeline**:
@@ -147,6 +188,12 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    python scripts/run_technical_analysis.py
    ```
    Outputs: `data/processed/technical_metrics/*.csv` and `reports/figures/*.png`
+
+3. **Run Sentiment Correlation Analysis**:
+   ```bash
+   jupyter lab notebooks/03_sentiment_correlation.ipynb
+   ```
+   Outputs: `data/processed/sentiment_correlation/*.csv` and correlation visualizations
 
 ## Output Files
 
@@ -171,6 +218,18 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
 - `data/processed/technical_metrics/{TICKER}_technicals.csv`: Full time series with indicators
 - `data/processed/technical_metrics/technical_summary.csv`: Latest snapshot
 - `reports/figures/{TICKER}_technicals.png`: Visualization charts
+
+### Sentiment Correlation Outputs (`data/processed/sentiment_correlation/`)
+- `daily_sentiment_by_stock.csv`: Aggregated daily sentiment scores by stock
+- `{TICKER}_sentiment_returns.csv`: Merged sentiment and returns data for each stock
+- `correlation_results.csv`: Pearson correlation coefficients and p-values
+- `analysis_summary.json`: Summary statistics and metadata
+
+### Sentiment Correlation Visualizations (`reports/figures/`)
+- `sentiment_distribution.png`: Distribution of sentiment scores
+- `sentiment_correlation_analysis.png`: Correlation analysis charts
+- `sentiment_vs_returns_by_stock.png`: Scatter plots for individual stocks
+- `sentiment_returns_timeseries.png`: Time series of sentiment vs returns
 
 ## Documentation
 
@@ -213,11 +272,21 @@ This repository represents original work completed for the Nova Financial Insigh
 - [x] **Data Visualization**: Multi-panel candlestick charts with indicators
 - [x] Analysis completed for 6 stocks (AAPL, AMZN, GOOG, META, MSFT, NVDA)
 
+### Task 3: Sentiment Analysis and Correlation ✅
+- [x] Branch `task-3` created
+- [x] **Sentiment Analysis**: TextBlob-based sentiment scoring on headlines
+- [x] **Date Alignment**: Normalized timestamps between news and stock data
+- [x] **Daily Returns**: Calculated percentage changes in stock prices
+- [x] **Daily Aggregation**: Average sentiment scores when multiple articles per day
+- [x] **Correlation Analysis**: Pearson correlation between sentiment and returns
+- [x] **Visualizations**: Sentiment distribution, correlation charts, scatter plots, time series
+- [x] **References**: Included TextBlob documentation and financial sentiment research papers
+
 ## Project Status
 - [x] Data ingestion and preprocessing
 - [x] EDA automation with statistical analysis (Task 1) ✅
 - [x] Technical indicator pipeline (Task 2) ✅
-- [ ] Sentiment scoring integration (Future work)
+- [x] Sentiment scoring integration (Task 3) ✅
 - [ ] Predictive modeling (Future work)
 - [ ] Final reporting (In progress)
 
