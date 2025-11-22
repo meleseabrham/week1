@@ -15,12 +15,14 @@ The goal is to explore how financial news sentiment influences equity price move
   - `run_technical_analysis.py`: Technical indicator computation and visualization
 - `notebooks/`: exploratory data analysis and storytelling notebooks.
   - `01_eda_analysis.ipynb`: Comprehensive EDA with statistical analysis and visualizations
-  - `02_technical_analysis.ipynb`: Technical analysis using TA-Lib and PyNance with visualizations
+  - `02_quantitative_analysis.ipynb`: Technical analysis using TA-Lib and PyNance with visualizations
+  - `03_sentiment_correlation.ipynb`: Sentiment analysis and correlation with stock movements
 - `data/`: 
   - `raw/`: Original dataset files
   - `processed/eda/`: EDA outputs (statistics, counts, topic models)
   - `processed/prices/`: Stock price data (AAPL, AMZN, GOOG, META, MSFT, NVDA)
   - `processed/technical_metrics/`: Technical indicator time series
+  - `processed/sentiment_correlation/`: Sentiment scores and correlation analysis results
 - `reports/`: 
   - `figures/`: Visualization charts for technical analysis
   - `interim_report.md`: Detailed progress report
@@ -132,8 +134,10 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    ```
 2. **For EDA Analysis**: Open `notebooks/01_eda_analysis.ipynb`
    - Run all cells to perform complete EDA with statistical analysis and visualizations
-3. **For Technical Analysis**: Open `notebooks/02_technical_analysis.ipynb`
+3. **For Technical Analysis**: Open `notebooks/02_quantitative_analysis.ipynb`
    - Run all cells to compute TA-Lib and PyNance indicators with visualizations
+4. **For Sentiment Correlation**: Open `notebooks/03_sentiment_correlation.ipynb`
+   - Run all cells to perform sentiment analysis and correlation with stock returns
 
 **Option 2: Using Python Scripts**
 1. **Run EDA Pipeline**:
@@ -147,6 +151,12 @@ The technical analysis pipeline (`scripts/run_technical_analysis.py`) computes i
    python scripts/run_technical_analysis.py
    ```
    Outputs: `data/processed/technical_metrics/*.csv` and `reports/figures/*.png`
+
+3. **Run Sentiment Correlation Analysis**:
+   ```bash
+   jupyter lab notebooks/03_sentiment_correlation.ipynb
+   ```
+   Outputs: `data/processed/sentiment_correlation/*.csv` and correlation visualizations
 
 ## Output Files
 
@@ -213,11 +223,21 @@ This repository represents original work completed for the Nova Financial Insigh
 - [x] **Data Visualization**: Multi-panel candlestick charts with indicators
 - [x] Analysis completed for 6 stocks (AAPL, AMZN, GOOG, META, MSFT, NVDA)
 
+### Task 3: Sentiment Analysis and Correlation ✅
+- [x] Branch `task-3` created
+- [x] **Sentiment Analysis**: TextBlob-based sentiment scoring on headlines
+- [x] **Date Alignment**: Normalized timestamps between news and stock data
+- [x] **Daily Returns**: Calculated percentage changes in stock prices
+- [x] **Daily Aggregation**: Average sentiment scores when multiple articles per day
+- [x] **Correlation Analysis**: Pearson correlation between sentiment and returns
+- [x] **Visualizations**: Sentiment distribution, correlation charts, scatter plots, time series
+- [x] **References**: Included TextBlob documentation and financial sentiment research papers
+
 ## Project Status
 - [x] Data ingestion and preprocessing
 - [x] EDA automation with statistical analysis (Task 1) ✅
 - [x] Technical indicator pipeline (Task 2) ✅
-- [ ] Sentiment scoring integration (Future work)
+- [x] Sentiment scoring integration (Task 3) ✅
 - [ ] Predictive modeling (Future work)
 - [ ] Final reporting (In progress)
 
