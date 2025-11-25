@@ -1,0 +1,62 @@
+{
+  "total_articles_analyzed": 1407328,
+  "unique_stocks_in_news": 6204,
+  "date_range_news": "2009-02-14 00:00:00+00:00 to 2020-06-11 21:12:35+00:00",
+  "stocks_analyzed": [
+    "AAPL",
+    "AMZN",
+    "GOOG",
+    "NVDA"
+  ],
+  "alignment_summary": [
+    {
+      "stock": "AAPL",
+      "news_rows": 80,
+      "matched_rows": 80,
+      "forward_filled_rows": 19,
+      "rows_dropped": 0
+    },
+    {
+      "stock": "AMZN",
+      "news_rows": 37,
+      "matched_rows": 37,
+      "forward_filled_rows": 9,
+      "rows_dropped": 0
+    },
+    {
+      "stock": "GOOG",
+      "news_rows": 377,
+      "matched_rows": 377,
+      "forward_filled_rows": 25,
+      "rows_dropped": 0
+    },
+    {
+      "stock": "META",
+      "news_rows": 0,
+      "matched_rows": 0,
+      "forward_filled_rows": 0,
+      "rows_dropped": 0
+    },
+    {
+      "stock": "MSFT",
+      "news_rows": 0,
+      "matched_rows": 0,
+      "forward_filled_rows": 0,
+      "rows_dropped": 0
+    },
+    {
+      "stock": "NVDA",
+      "news_rows": 1197,
+      "matched_rows": 1197,
+      "forward_filled_rows": 72,
+      "rows_dropped": 0
+    }
+  ],
+  "correlation_summary": {
+    "mean": 0.0694550472547549,
+    "median": 0.07677934823043478,
+    "std": 0.03654729212817559,
+    "significant_count": "2",
+    "avg_forward_fill_share": 0.15180165413264324
+  }
+}
